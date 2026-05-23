@@ -24,6 +24,10 @@ const FILTERS = [
   'Completed'
 ];
 
+// ✅ Railway Backend URL
+const BACKEND_URL =
+  'https://zepnestapp-production.up.railway.app';
+
 const RequestList = () => {
 
   const navigate = useNavigate();
@@ -42,6 +46,8 @@ const RequestList = () => {
 
   const [error, setError] =
     useState('');
+
+  // FETCH REQUESTS
 
   useEffect(() => {
 
@@ -75,7 +81,7 @@ const RequestList = () => {
 
   }, []);
 
-  // DELETE
+  // DELETE REQUEST
 
   const handleDelete = async (id) => {
 
@@ -395,7 +401,7 @@ const RequestList = () => {
                 {req.image && (
 
                   <img
-                    src={`http://localhost:5000/uploads/${req.image}`}
+                    src={`${BACKEND_URL}/uploads/${req.image}`}
                     alt="Request"
                     className="request-image"
                   />
