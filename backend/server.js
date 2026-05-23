@@ -66,5 +66,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Zepnest backend running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
