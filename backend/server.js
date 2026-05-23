@@ -2,7 +2,6 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 
 const authRoutes = require("./routes/authRoutes");
 const requestRoutes = require("./routes/requestRoutes");
@@ -10,74 +9,36 @@ const requestRoutes = require("./routes/requestRoutes");
 const app = express();
 
 
-// ✅ SIMPLE CORS
+// SIMPLE CORS
 
 app.use(cors());
 
 
-// ✅ BODY PARSER
+// BODY PARSER
 
 app.use(express.json());
 
-app.use(express.urlencoded({ extended: true }));
 
-
-// ✅ STATIC FILES
-
-app.use(
-  "/uploads",
-  express.static(
-    path.join(__dirname, "uploads")
-  )
-);
-
-
-// ✅ ROUTES
+// ROUTES
 
 app.use("/api/auth", authRoutes);
 
 app.use("/api/requests", requestRoutes);
 
 
-// ✅ HOME ROUTE
+// TEST ROUTE
 
 app.get("/", (req, res) => {
 
   res.json({
     success: true,
-    message: "Backend Running Successfully 🚀",
+    message: "Backend Working 🚀",
   });
 
 });
 
 
-// ✅ 404
-
-app.use((req, res) => {
-
-  res.status(404).json({
-    success: false,
-    message: "Route not found",
-  });
-
-});
-
-
-// ✅ ERROR HANDLER
-
-app.use((err, req, res, next) => {
-
-  console.error(err);
-
-  res.status(500).json({
-    success: false,
-    message: "Internal Server Error",
-  });
-
-});
-
-
-// ✅ SERVER
+// SERVER
 
 const PORT =
   process.env.PORT || 5000;
