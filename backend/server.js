@@ -13,16 +13,21 @@ const requestRoutes = require("./routes/requestRoutes");
 // Create Express app
 const app = express();
 
-// ── Middleware ──
+// ─────────────────────────────────────
+// CORS Configuration
+// ─────────────────────────────────────
 
-// CORS
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "https://zepnestapp-production.up.railway.app",
+    origin: "https://zepnest-app.vercel.app",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
   })
 );
+
+// ─────────────────────────────────────
+// Middleware
+// ─────────────────────────────────────
 
 // JSON parser
 app.use(express.json());
@@ -33,12 +38,16 @@ app.use(express.urlencoded({ extended: true }));
 // Static uploads folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// ── Routes ──
+// ─────────────────────────────────────
+// Routes
+// ─────────────────────────────────────
 
 app.use("/api/auth", authRoutes);
 app.use("/api/requests", requestRoutes);
 
-// ── Home Route ──
+// ─────────────────────────────────────
+// Home Route
+// ─────────────────────────────────────
 
 app.get("/", (req, res) => {
   res.json({
@@ -48,7 +57,9 @@ app.get("/", (req, res) => {
   });
 });
 
-// ── 404 Route ──
+// ─────────────────────────────────────
+// 404 Route
+// ─────────────────────────────────────
 
 app.use((req, res) => {
   res.status(404).json({
@@ -57,7 +68,9 @@ app.use((req, res) => {
   });
 });
 
-// ── Global Error Handler ──
+// ─────────────────────────────────────
+// Global Error Handler
+// ─────────────────────────────────────
 
 app.use((err, req, res, next) => {
   console.error("Global Error:", err.message);
@@ -68,10 +81,12 @@ app.use((err, req, res, next) => {
   });
 });
 
-// ── Start Server ──
+// ─────────────────────────────────────
+// Start Server
+// ─────────────────────────────────────
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
