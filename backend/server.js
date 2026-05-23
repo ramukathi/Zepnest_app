@@ -10,16 +10,19 @@ const requestRoutes = require("./routes/requestRoutes");
 const app = express();
 
 
-// ✅ SIMPLE CORS FIX
+// ✅ SIMPLE CORS
 
 app.use(cors());
 
 
-// ✅ MIDDLEWARE
+// ✅ BODY PARSER
 
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
+
+
+// ✅ STATIC FILES
 
 app.use(
   "/uploads",
@@ -42,7 +45,7 @@ app.get("/", (req, res) => {
 
   res.json({
     success: true,
-    message: "Zepnest Backend Running 🚀",
+    message: "Backend Running Successfully 🚀",
   });
 
 });
