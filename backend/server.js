@@ -1,68 +1,75 @@
 // backend/server.js
-// This is the HEART of the backend — it starts everything
 
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-require('dotenv').config(); // Load .env variables
+require("dotenv").config();
+
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
 
 // Import routes
-const authRoutes = require('./routes/authRoutes');
-const requestRoutes = require('./routes/requestRoutes');
+const authRoutes = require("./routes/authRoutes");
+const requestRoutes = require("./routes/requestRoutes");
 
 // Create Express app
 const app = express();
 
-// ── Middleware (runs on EVERY request) ──
+// ── Middleware ──
 
-// 1. CORS — Allow frontend (localhost:5173) to call this backend
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  credentials: true
-}));
+// CORS
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
 
-// 2. JSON Parser — Allow Express to read JSON request bodies
+// JSON parser
 app.use(express.json());
 
-// 3. URL Encoded Parser — For form submissions
+// URL encoded parser
 app.use(express.urlencoded({ extended: true }));
 
-// 4. Static Files — Serve uploaded images
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Static uploads folder
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// ── API Routes ──
-app.use('/api/auth', authRoutes);
-app.use('/api/requests', requestRoutes);
+// ── Routes ──
 
-// ── Health Check Route ──
-app.get('/', (req, res) => {
+app.use("/api/auth", authRoutes);
+app.use("/api/requests", requestRoutes);
+
+// ── Home Route ──
+
+app.get("/", (req, res) => {
   res.json({
-    message: '🏠 Zepnest API is running!',
-    version: '1.0.0',
-    status: 'OK'
+    message: "🏠 Zepnest API is running!",
+    version: "1.0.0",
+    status: "OK",
   });
 });
 
-// ── 404 Handler ──
+// ── 404 Route ──
+
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    message: `Route ${req.originalUrl} not found.`
+    message: `Route ${req.originalUrl} not found.`,
   });
 });
 
 // ── Global Error Handler ──
+
 app.use((err, req, res, next) => {
-  console.error('Global Error:', err.message);
+  console.error("Global Error:", err.message);
 
   res.status(err.status || 500).json({
     success: false,
-    message: err.message || 'Internal server error.'
+    message: err.message || "Internal server error.",
   });
 });
 
 // ── Start Server ──
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
