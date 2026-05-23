@@ -10,21 +10,12 @@ const requestRoutes = require("./routes/requestRoutes");
 const app = express();
 
 
-// ─────────────────────────────────────
-// CORS FIX
-// ─────────────────────────────────────
+// ✅ SIMPLE CORS FIX
 
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  })
-);
+app.use(cors());
 
 
-// ─────────────────────────────────────
-// MIDDLEWARE
-// ─────────────────────────────────────
+// ✅ MIDDLEWARE
 
 app.use(express.json());
 
@@ -38,32 +29,26 @@ app.use(
 );
 
 
-// ─────────────────────────────────────
-// ROUTES
-// ─────────────────────────────────────
+// ✅ ROUTES
 
 app.use("/api/auth", authRoutes);
 
 app.use("/api/requests", requestRoutes);
 
 
-// ─────────────────────────────────────
-// HOME ROUTE
-// ─────────────────────────────────────
+// ✅ HOME ROUTE
 
 app.get("/", (req, res) => {
 
-  res.status(200).json({
+  res.json({
     success: true,
-    message: "Zepnest API Running Successfully 🚀",
+    message: "Zepnest Backend Running 🚀",
   });
 
 });
 
 
-// ─────────────────────────────────────
-// 404 ROUTE
-// ─────────────────────────────────────
+// ✅ 404
 
 app.use((req, res) => {
 
@@ -75,13 +60,11 @@ app.use((req, res) => {
 });
 
 
-// ─────────────────────────────────────
-// GLOBAL ERROR HANDLER
-// ─────────────────────────────────────
+// ✅ ERROR HANDLER
 
 app.use((err, req, res, next) => {
 
-  console.error("❌ Global Error:", err);
+  console.error(err);
 
   res.status(500).json({
     success: false,
@@ -91,11 +74,10 @@ app.use((err, req, res, next) => {
 });
 
 
-// ─────────────────────────────────────
-// START SERVER
-// ─────────────────────────────────────
+// ✅ SERVER
 
-const PORT = process.env.PORT || 5000;
+const PORT =
+  process.env.PORT || 5000;
 
 app.listen(PORT, () => {
 
