@@ -6,7 +6,7 @@ A full-stack Home Service Request Management System where users can register, lo
 
 ## 🚀 Live Demo
 
-### Frontend (Vercel)
+### Live Hosted Application
 https://zepnest-app.vercel.app/
 
 ### GitHub Repository
