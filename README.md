@@ -7,10 +7,7 @@ A full-stack Home Service Request Management System where users can register, lo
 ## 🚀 Live Demo
 
 ### Frontend (Vercel)
-https://your-app.vercel.app
-
-### Backend API (Railway)
-https://your-backend.up.railway.app
+https://zepnest-app.vercel.app/
 
 ### GitHub Repository
 https://github.com/ramukathi/Zepnest_app
@@ -236,6 +233,7 @@ CREATE TABLE service_requests (
 # 👨‍💻 Author
 
 ## Kathi Ramu
+ramukathi18@gmail.com
 
 GitHub:
 https://github.com/ramukathi
