@@ -213,19 +213,6 @@ CREATE TABLE service_requests (
 
 ---
 
-# 📸 Screenshots
-
-## Login Page
-(Add Screenshot Here)
-
-## Dashboard
-(Add Screenshot Here)
-
-## Service Request Form
-(Add Screenshot Here)
-
----
-
 # 🔐 Authentication Flow
 
 - User registers account
@@ -250,17 +237,8 @@ CREATE TABLE service_requests (
 
 ## Kathi Ramu
 
-B.Tech AIML Student  
-Passionate Full Stack Developer & AI Enthusiast
-
 GitHub:
 https://github.com/ramukathi
-
----
-
-# ⭐ Support
-
-If you like this project, give it a ⭐ on GitHub!
 
 ---
 
